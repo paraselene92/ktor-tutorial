@@ -28,12 +28,12 @@ fun Application.module() {
 
     transaction {
         Character.new {
-            name = "Kozue Yusa"
-            age = "11"
-        }
-        Character.new {
             name = "Yukimi Sajo"
             age = "10"
+        }
+        Character.new {
+            name = "Kozue Yusa"
+            age = "11"
         }
     }
 

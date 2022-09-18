@@ -21,11 +21,13 @@ fun Application.configureRouting() {
         }
         get("/idol") {
             val character = transaction {
-                Character.all().joinToString {
+                Character.all().sortedBy {
                     it.name
                 }
             }
-            call.respondText(character)
+            call.respondText(character.joinToString {
+                it.name
+            })
         }
     }
     routing {
