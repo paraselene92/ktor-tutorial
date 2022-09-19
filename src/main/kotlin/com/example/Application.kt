@@ -20,21 +20,11 @@ import org.jetbrains.exposed.sql.transactions.transaction
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module() {
-    Database.connect("jdbc:h2:mem:regular;DB_CLOSE_DELAY=-1", driver = "org.h2.Driver")
+    Database.connect("jdbc:postgresql://localhost:5432/postgres", driver = "org.postgresql.Driver",
+        user = "postgres", password = "password")
 
     transaction {
         SchemaUtils.create(Characters)
-    }
-
-    transaction {
-        Character.new {
-            name = "Yukimi Sajo"
-            age = "10"
-        }
-        Character.new {
-            name = "Kozue Yusa"
-            age = "11"
-        }
     }
 
     configureRouting()
